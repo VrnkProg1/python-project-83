@@ -8,6 +8,7 @@ authors = ["Veronika Vlasova <v.vlasova.dev@gmail.com>"]
 python = "^3.10"
 flake8 = "^7.1.1"
 gunicorn = "^23.0.0"
+flask = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
 
