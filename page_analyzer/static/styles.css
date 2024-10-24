@@ -1,0 +1,114 @@
+:root {
+    --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-size: 1rem;
+    --font-weight: 400;
+    --line-height: 1.5;
+    --text-color: #212529;
+    --background-color: #fff;
+    --footer-padding: 1rem 0;
+    --border-color: #dee2e6;
+    --border-top-color: #007bff;
+    --padding-x: 1rem;
+    --padding-y: 1rem;
+    --padding-large: 3rem;
+}
+
+/* Общие стили для body */
+body {
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+    min-height: 100vh; /* Минимальная высота на весь экран */
+    margin: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+    color: var(--text-color); /* Цвет текста */
+    background-color: var(--background-color); /* Цвет фона */
+}
+
+/* Основной контент */
+main {
+    flex-grow: 1; /* Основной контент занимает доступное пространство */
+}
+
+/* Футер */
+footer {
+    margin-top: auto; /* Отталкивает футер вниз */
+    padding: var(--footer-padding); /* Отступы сверху и снизу */
+    border-top: 1px solid var(--border-color); /* Граница сверху футера */
+    text-align: center; /* Центрирование текста */
+}
+
+/* Стили для навигации */
+.bg-dark {
+    background-color: rgba(33, 37, 41, 1) !important; /* Цвет фона для .bg-dark */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.55); /* Цвет текста для навигации */
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.75); /* Цвет текста при наведении */
+}
+
+/* Стили для кнопки переключения */
+.navbar-toggler {
+    padding: 0.25rem 0.75rem; /* Отступы для кнопки переключения */
+    font-size: 1.25rem; /* Размер шрифта для кнопки */
+    border-color: rgba(255, 255, 255, 0.15); /* Цвет границы */
+    border-radius: 0.375rem; /* Радиус границы */
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0.25rem 0.25rem rgba(13, 110, 253, 0.25); /* Эффект фокуса */
+}
+
+/* Прочие стили */
+.flex-shrink-0 {
+    flex-shrink: 0 !important;
+}
+
+.px-3 {
+    padding-right: var(--padding-x) !important;
+    padding-left: var(--padding-x) !important;
+}
+
+.py-3 {
+    padding-top: var(--padding-y) !important;
+    padding-bottom: var(--padding-y) !important;
+}
+
+.border-top {
+    border-top: 1px solid var(--border-color);
+}
+
+.border-top-custom {
+    border-top: 2px solid var(--border-top-color); /* Толщина 2px, стиль solid, цвет #007bff */
+}
+
+.p-5 {
+    padding: var(--padding-large) !important;
+}
+
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.border {
+    border: 1px solid var(--border-color);
+}
+
+.rounded-3 {
+    border-radius: 0.5rem !important;
+}
+
+.container-lg {
+    width: 100%;
+    padding-right: var(--padding-x);
+    padding-left: var(--padding-x);
+    margin-right: auto;
+    margin-left: auto;
+}
