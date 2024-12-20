@@ -1,0 +1,47 @@
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
+    <meta charset="UTF-8">
+    <title>Анализатор страниц</title>
+</head>
+<body class="min-vh-100 d-flex flex-column">
+    <header class="flex-shrink-0">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark px-3">
+            <a class="navbar-brand" href="/">Анализатор страниц</a>
+            <div id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/urls">Сайты</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="flex-grow-1">
+        <div class="container-lg mt-3">
+            <h1>Сайты</h1>
+            <div class="table-responsive row">
+                <table class="table table-bordered table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Имя</th>
+                            <th>Последняя проверка</th>
+                            <th>Код ответа</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if urls %}
+                            {% for url in urls|reverse %}
+                                <tr>
+                                    <td>{{ url[0] }}</td>
+                                    <td><a href="{{ url_for('view_url', id=url[0]) }}">{{ url[1] }}</a></td>
+                                    <td>{{ url[3] }}</td>
+                                    <td>{{ url[4] }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
