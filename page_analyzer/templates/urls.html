@@ -30,16 +30,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% if urls %}
-                            {% for url in urls|reverse %}
-                                <tr>
-                                    <td>{{ url[0] }}</td>
-                                    <td><a href="{{ url_for('view_url', id=url[0]) }}">{{ url[1] }}</a></td>
-                                    <td>{{ url[3] }}</td>
-                                    <td>{{ url[4] }}</td>
-                                </tr>
-                            {% endfor %}
-                        {% endif %}
+                        {% for url in urls %}
+                        <tr>
+                            <td>{{ url[0] }}</td>
+                            <td><a href="{{ url_for('view_url', id=url[0]) }}">{{ url[1] }}</a></td>
+                            <td>{{ url[2] if url[2] else '' }}</td>
+                            <td></td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>

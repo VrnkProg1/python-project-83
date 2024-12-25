@@ -31,7 +31,7 @@
         <h1 class="white-space">Сайт: {{ url[1] }}</h1>
       {% endif %}
       <div class="table-responsive row">
-        <table class="table table-bordered table-hover text-nowrap" data-test="url">
+        <table class="table table-bordered table-hover text-nowrap" data-test="checks">
           <tbody>
             {% if url %}
               <tr>
@@ -52,9 +52,11 @@
       </div>
       <div class="margin-top table-responsive row">
         <h2>Проверки</h2>
-        <form method="post" action="/urls/{{ id }}/checks">
-          <input type="submit" class="btn btn-primary" value="Запустить проверку">
-        </form>
+        {% if url %}
+          <form method="post" action="/urls/{{ url[0] }}/checks">
+            <input type="submit" class="btn btn-primary" value="Запустить проверку">
+          </form>
+        {% endif %}
         <table class="table table-bordered table-hover text-nowrap" data-test="checks">
           <thead>
             <tr>
@@ -67,7 +69,17 @@
             </tr>
           </thead>
           <tbody>
-          </tbody>
+            {% for check in checks|reverse %}
+              <tr>
+                <td>{{ check[0] }}</td>  <!-- ID проверки -->
+                <td>{{ check[2] }}</td>  <!-- Код ответа, если он есть -->
+                <td>{{ check[3] }}</td>  <!-- H1, если он есть -->
+                <td>{{ check[4] }}</td>  <!-- Title, если он есть -->
+                <td>{{ check[5] }}</td>  <!-- Description, если он есть -->
+                <td>{{ check[1] }}</td>  <!-- Дата создания -->
+              </tr>
+            {% endfor %}
+        </tbody>
         </table>
       </div>
     </div> 

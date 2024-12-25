@@ -64,19 +64,45 @@ def view_url(id):
             # Выполняем запрос для получения URL по его id
             cur.execute("SELECT id, name, created_at FROM urls WHERE id = %s", (id,))
             url = cur.fetchone()
+        
+            cur.execute("SELECT id, created_at FROM url_checks WHERE url_id = %s", (id,))
+            checks = cur.fetchall()
 
-    return render_template('url_detail.html', url=url)
+    return render_template('url_checks.html', url=url, checks=checks)
 
 
 @app.route('/urls', methods=['GET'])
 def list_urls():
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as cur:
-            # Выполняем запрос для получения URL по его id
-            cur.execute("SELECT *  FROM urls;")
-            urls = cur.fetchall()
+            cur.execute('''
+                SELECT urls.id AS url_id, urls.name AS url_name, latest_checks.created_at AS last_check_date
+                FROM urls
+                LEFT JOIN (
+                    SELECT url_checks.url_id, MAX(url_checks.created_at) AS created_at
+                    FROM url_checks
+                    GROUP BY url_checks.url_id
+                ) AS latest_checks ON urls.id = latest_checks.url_id
+                ORDER BY urls.id DESC;
+                ''')
+            url = cur.fetchall()
 
-    return render_template('urls.html', urls=urls)
+    return render_template('urls.html', urls = url)
+
+
+@app.route('/urls/<int:id>/checks', methods=['POST'])
+def create_check(id):
+    try:
+        with psycopg2.connect(DATABASE_URL) as conn:
+            with conn.cursor() as cur:
+                # Добавляем запись в таблицу url_checks
+                cur.execute("INSERT INTO url_checks (url_id, created_at) VALUES (%s, %s)", (id, datetime.now()))
+                conn.commit()
+                flash("Проверка успешно добавлена.", 'success')
+    except Exception as e:
+        flash(f"Ошибка при добавлении проверки: {str(e)}", 'error')
+    
+    return redirect(url_for('view_url', id=id))
 
 
 @app.route('/')
