@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 import validators
+import requests
 
 load_dotenv()
 app = Flask(__name__)
@@ -54,7 +55,8 @@ def check_url_exists(url):
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT 1 FROM urls WHERE name = %s", (url,))
-            return cur.fetchone() is not None  # Возвращает True, если URL существует
+            id = cur.fetchone() is not None  # Возвращает True, если URL существует
+            return id
 
 
 @app.route('/urls/<int:id>', methods=['GET'])
@@ -65,8 +67,10 @@ def view_url(id):
             cur.execute("SELECT id, name, created_at FROM urls WHERE id = %s", (id,))
             url = cur.fetchone()
         
-            cur.execute("SELECT id, created_at FROM url_checks WHERE url_id = %s", (id,))
+            cur.execute("SELECT id, created_at, status_code FROM url_checks WHERE url_id = %s", (id,))
             checks = cur.fetchall()
+
+
 
     return render_template('url_checks.html', url=url, checks=checks)
 
@@ -76,31 +80,50 @@ def list_urls():
     with psycopg2.connect(DATABASE_URL) as conn:
         with conn.cursor() as cur:
             cur.execute('''
-                SELECT urls.id AS url_id, urls.name AS url_name, latest_checks.created_at AS last_check_date
+                SELECT urls.id AS url_id, 
+                       urls.name AS url_name, 
+                       latest_checks.created_at AS last_check_date, 
+                       url_checks.status_code
                 FROM urls
                 LEFT JOIN (
-                    SELECT url_checks.url_id, MAX(url_checks.created_at) AS created_at
+                    SELECT url_checks.url_id, 
+                           MAX(url_checks.created_at) AS created_at
                     FROM url_checks
                     GROUP BY url_checks.url_id
                 ) AS latest_checks ON urls.id = latest_checks.url_id
+                LEFT JOIN url_checks ON latest_checks.url_id = url_checks.url_id 
+                                      AND latest_checks.created_at = url_checks.created_at
+                GROUP BY urls.id, urls.name, latest_checks.created_at, url_checks.status_code
                 ORDER BY urls.id DESC;
-                ''')
+            ''')
             url = cur.fetchall()
 
     return render_template('urls.html', urls = url)
 
 
+def get_url(id):
+    with psycopg2.connect(DATABASE_URL) as conn:
+        with conn.cursor() as cur:
+            cur.execute("SELECT name FROM  urls WHERE id = %s", (id,))
+            result = cur.fetchone()
+            return result[0]
+
+
 @app.route('/urls/<int:id>/checks', methods=['POST'])
 def create_check(id):
+    url = get_url(id)
     try:
+        response = requests.get(url)  # Делаем запрос по URL
+        status_code = response.status_code  # Получаем код ответа
         with psycopg2.connect(DATABASE_URL) as conn:
             with conn.cursor() as cur:
                 # Добавляем запись в таблицу url_checks
-                cur.execute("INSERT INTO url_checks (url_id, created_at) VALUES (%s, %s)", (id, datetime.now()))
-                conn.commit()
-                flash("Проверка успешно добавлена.", 'success')
+                if validators.url(url):
+                    cur.execute("INSERT INTO url_checks (url_id, created_at, status_code) VALUES (%s, %s, %s)", (id, datetime.now(), status_code))
+                    conn.commit()
+                    flash("Проверка успешно добавлена.", 'success')
     except Exception as e:
-        flash(f"Ошибка при добавлении проверки: {str(e)}", 'error')
+        flash(f"Произошла ошибка при проверке", 'error')
     
     return redirect(url_for('view_url', id=id))
 

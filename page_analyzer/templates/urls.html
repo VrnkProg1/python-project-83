@@ -35,7 +35,7 @@
                             <td>{{ url[0] }}</td>
                             <td><a href="{{ url_for('view_url', id=url[0]) }}">{{ url[1] }}</a></td>
                             <td>{{ url[2] if url[2] else '' }}</td>
-                            <td></td>
+                            <td>{{ url[3] if url[3] else '' }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
