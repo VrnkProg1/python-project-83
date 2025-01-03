@@ -204,21 +204,17 @@ div {
     border-color: var(--bs-table-border-color);
 }
 
-.table-bordered {
-
-}
 
 .table-hover {
     white-space: nowrap !important;
 }
 
-.text-nowrap {
-    
-}
 
 table {
     caption-side: bottom;
     border-collapse: collapse;
+    width: auto; /* Устанавливаем ширину таблицы на автоматическую */
+    table-layout: auto; /* Позволяем браузеру автоматически определять ширину колонок */
 }
 
 .mt-3 {
@@ -240,4 +236,12 @@ form {
     display: block;
     margin-top: 0em;
     unicode-bidi: isolate;
+}
+
+.table th, .table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+    padding: 12px;
 }

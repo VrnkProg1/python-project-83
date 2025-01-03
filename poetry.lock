@@ -1,4 +1,22 @@
 [[package]]
+name = "beautifulsoup4"
+version = "4.12.3"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+cchardet = ["cchardet"]
+chardet = ["chardet"]
+charset-normalizer = ["charset-normalizer"]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "blinker"
 version = "1.9.0"
 description = "Fast, simple object-to-object and broadcast signaling"
@@ -223,6 +241,14 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "soupsieve"
+version = "2.6"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "urllib3"
 version = "2.3.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -272,9 +298,10 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "91215138012afe5d0b09a26b90a10c2e9b98ee1b22d45a2bf997b5baf0f9ece7"
+content-hash = "a0a6a6b2f4378bbbf6e407e52e988a1f2fb34b1808281455dfef7f12b0db4615"
 
 [metadata.files]
+beautifulsoup4 = []
 blinker = []
 certifi = []
 charset-normalizer = []
@@ -296,6 +323,7 @@ pycodestyle = []
 pyflakes = []
 python-dotenv = []
 requests = []
+soupsieve = []
 urllib3 = []
 validators = []
 visitor = []
