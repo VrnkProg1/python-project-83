@@ -4,8 +4,6 @@ CREATE TABLE urls (
     created_at DATE
 );
 
-id, url_id, status_code, h1, title, description и created_at
-
 CREATE TABLE url_checks (
     id SERIAL PRIMARY KEY,
     url_id INT,
