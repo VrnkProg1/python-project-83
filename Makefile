@@ -10,7 +10,7 @@ build:
 	./build.sh
 
 lint:
-	poetry run flake8 .
+	uv run ruff check .
 
 PORT ?= 8000
 start:

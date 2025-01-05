@@ -19,6 +19,7 @@ dev = [
     "psycopg2-binary>=2.9.10",
     "python-dotenv>=1.0.1",
     "requests>=2.32.3",
+    "ruff>=0.8.6",
     "unicorn>=2.1.1",
     "validators>=0.34.0",
 ]
