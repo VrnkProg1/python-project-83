@@ -1,30 +1,8 @@
-[tool.poetry]
+[project]
 name = "hexlet-code"
 version = "0.1.0"
 description = ""
 authors = ["Veronika Vlasova <v.vlasova.dev@gmail.com>"]
-packages = [
-    { include = "page_analyzer" } 
-]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-flake8 = "^7.1.1"
-gunicorn = "^23.0.0"
-flask = "^2.3.0"
-python-dotenv = "^0.20.0"
-flask-bootstrap = "^3.3.7"
-psycopg2-binary = "^2.9.10"
-validators = "^0.34.0"
-requests = "^2.32.3"
-beautifulsoup4 = "^4.12.3"
-uvicorn = "^0.34.0"
-
-[tool.poetry.dev-dependencies]
-
-[tool.poetry.scripts]
-run = "app:app"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
