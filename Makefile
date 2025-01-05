@@ -1,4 +1,5 @@
 install:
+	pip install uv
 	uv sync
 
 dev:
