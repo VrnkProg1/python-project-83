@@ -131,6 +131,14 @@ testing = ["gevent", "eventlet", "coverage", "pytest", "pytest-cov"]
 tornado = ["tornado (>=0.2)"]
 
 [[package]]
+name = "h11"
+version = "0.14.0"
+description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -249,6 +257,14 @@ optional = false
 python-versions = ">=3.8"
 
 [[package]]
+name = "typing-extensions"
+version = "4.12.2"
+description = "Backported and Experimental Type Hints for Python 3.8+"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "urllib3"
 version = "2.3.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -261,6 +277,22 @@ brotli = ["brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
+
+[[package]]
+name = "uvicorn"
+version = "0.34.0"
+description = "The lightning-fast ASGI server."
+category = "main"
+optional = false
+python-versions = ">=3.9"
+
+[package.dependencies]
+click = ">=7.0"
+h11 = ">=0.8"
+typing-extensions = {version = ">=4.0", markers = "python_version < \"3.11\""}
+
+[package.extras]
+standard = ["colorama (>=0.4)", "httptools (>=0.6.3)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
 [[package]]
 name = "validators"
@@ -298,7 +330,7 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a0a6a6b2f4378bbbf6e407e52e988a1f2fb34b1808281455dfef7f12b0db4615"
+content-hash = "4c3efedc6342c43db4336251f65d669b9680b561b29bb31ed556e62751eff21f"
 
 [metadata.files]
 beautifulsoup4 = []
@@ -312,6 +344,7 @@ flake8 = []
 flask = []
 flask-bootstrap = []
 gunicorn = []
+h11 = []
 idna = []
 itsdangerous = []
 jinja2 = []
@@ -324,7 +357,9 @@ pyflakes = []
 python-dotenv = []
 requests = []
 soupsieve = []
+typing-extensions = []
 urllib3 = []
+uvicorn = []
 validators = []
 visitor = []
 werkzeug = []
