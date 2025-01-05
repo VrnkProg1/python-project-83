@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-
-# Установка зависимостей
-make install && psql -a -d $DATABASE_URL -f database.sql
+# скачиваем uv и запускаем команду установки зависимостей
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source $HOME/.local/bin/env
+make install
