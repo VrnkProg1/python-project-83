@@ -23,7 +23,7 @@ uvicorn = "^0.34.0"
 [tool.poetry.dev-dependencies]
 
 [tool.poetry.scripts]
-run = "page_analyzer:app"
+run = "app:app"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
