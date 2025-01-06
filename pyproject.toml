@@ -6,20 +6,20 @@ authors = ["Veronika Vlasova <v.vlasova.dev@gmail.com>"]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "beautifulsoup4>=4.12.3",
+    "flask>=3.1.0",
+    "flask-bootstrap>=3.3.7.1",
+    "gunicorn>=23.0.0",
     "more-itertools>=10.5.0",
+    "psycopg2-binary>=2.9.10",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+    "unicorn>=2.1.1",
+    "validators>=0.34.0",
 ]
 
 [dependency-groups]
 dev = [
-    "beautifulsoup4>=4.12.3",
     "flake8>=7.1.1",
-    "flask>=3.1.0",
-    "flask-bootstrap>=3.3.7.1",
-    "gunicorn>=23.0.0",
-    "psycopg2-binary>=2.9.10",
-    "python-dotenv>=1.0.1",
-    "requests>=2.32.3",
     "ruff>=0.8.6",
-    "unicorn>=2.1.1",
-    "validators>=0.34.0",
 ]
