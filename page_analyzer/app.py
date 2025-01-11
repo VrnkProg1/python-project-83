@@ -6,7 +6,7 @@ from datetime import datetime
 import validators
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse, urlunparse
+from urllib.parse import urlparse
 
 load_dotenv()
 app = Flask(__name__)
@@ -54,7 +54,7 @@ def add_url():
 
     if not validators.url(base_url) or len(base_url) > 255:
         flash("Некорректный URL", 'error')
-        return redirect(url_for('index'))
+        return render_template('index.html', invalid_url=url)
     elif check_url_exists(base_url):
         new_url_id = get_id(base_url)
         flash("Страница уже существует", 'info')
