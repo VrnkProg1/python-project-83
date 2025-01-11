@@ -180,7 +180,7 @@ def create_check(id):
                             VALUES (%s, %s, %s, %s, %s, %s)
                         ''', (id, h1, title, description, datetime.now(), status_code))
                     conn.commit()
-                    flash("Проверка успешно добавлена.", 'success')
+                    flash("Страница успешно проверена", 'success')
     except Exception:
         flash("Произошла ошибка при проверке", 'error')
     return redirect(url_for('view_url', id=id))
