@@ -106,7 +106,7 @@ footer {
 }
 
 .p-5 {
-    padding: var(--padding-large);
+    padding: 3rem !important;
 }
 
 .mx-auto {
@@ -135,6 +135,7 @@ footer {
 .alert {
     --bs-alert-padding-x: 1rem;
     --bs-alert-padding-y: 1rem;
+    --bs-alert-margin-bottom: 1rem;
     padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
     margin-bottom: var(--bs-alert-margin-bottom);
     --bs-alert-border: var(--bs-border-width) solid var(--bs-alert-border-color);
@@ -174,6 +175,12 @@ footer {
 div {
     display: block;
     unicode-bidi: isolate;
+}
+
+.display-3 {
+    font-size: calc(1.525rem + 2.3vw);
+    font-weight: 300;
+    line-height: 1.2;
 }
 
  /* url_detail styles */
