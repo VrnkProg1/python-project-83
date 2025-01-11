@@ -29,7 +29,7 @@
     --bs-emphasis-color: #000;
     --bs-body-bg: #fff;
     --bs-border-color: #dee2e6;
-
+    --bs-body-color: #212529;
 }
 
 /* Общие стили для body */
@@ -244,4 +244,8 @@ form {
     white-space: normal;
     word-wrap: break-word;
     padding: 12px;
+}
+
+.form-control {
+    color: var(--bs-body-color);
 }
