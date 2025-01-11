@@ -18,7 +18,6 @@
     </header>
     <main class="flex-grow-1">
       <div class="">
-        <!-- Блок для отображения flash-сообщений -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
