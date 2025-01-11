@@ -6,6 +6,7 @@ from datetime import datetime
 import validators
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse, urlunparse
 
 load_dotenv()
 app = Flask(__name__)
@@ -37,20 +38,30 @@ def get_id(url):
             return result[0]
 
 
-@app.route('/add-url', methods=['POST'])  # Добавление url в БД
+def extract_base_domain(user_url):
+    # Разбираем URL на компоненты
+    parsed_url = urlparse(user_url)
+    # Формируем базовый URL, включая только схему и домен
+    base_domain = f"{parsed_url.scheme}://{parsed_url.netloc}"
+    return base_domain
+
+@app.route('/add-url', methods=['POST'])  # Добавление URL в БД
 def add_url():
     url = request.form['url']
 
-    if not validators.url(url) or len(url) > 255:
+    # Извлечение базового URL
+    base_url = extract_base_domain(url)
+
+    if not validators.url(base_url) or len(base_url) > 255:
         flash("Некорректный URL", 'error')
         return redirect(url_for('index'))
-    elif check_url_exists(url):
-        new_url_id = get_id(url)
+    elif check_url_exists(base_url):
+        new_url_id = get_id(base_url)
         flash("Страница уже существует", 'info')
         return redirect(url_for('view_url', id=new_url_id))
     else:
-        add_url_to_db(url)
-        new_url_id = get_id(url)
+        add_url_to_db(base_url)  # Добавляем базовый URL в БД
+        new_url_id = get_id(base_url)
         flash("Страница успешно добавлена", 'success')
         return redirect(url_for('view_url', id=new_url_id))
 
