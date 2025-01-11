@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/garlic.js/1.2.1/garlic.min.js"></script>
     <meta charset="UTF-8">
     <title>Анализатор страниц</title>
 </head>
@@ -35,7 +36,7 @@
                 <p class="lead">Бесплатно проверяйте сайты на SEO-пригодность</p>
                 <form action="/add-url" method="post" class="d-flex justify-content-center">
                     <label for="text" class="visually-hidden"></label>
-                    <input type="search" name="url" placeholder="https://www.example.com" value="" class="form-control form-control-lg" required>
+                    <input type="search" name="url" placeholder="https://www.example.com" value="" class="form-control form-control-lg"  data-persist="garlic" required>
                     <input type="submit" class="btn btn-primary btn-lg ms-3 px-5 text-uppercase mx-3" value="Проверить">
                 </form>
             </div>
