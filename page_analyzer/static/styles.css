@@ -249,3 +249,7 @@ form {
 .form-control {
     color: var(--bs-body-color);
 }
+
+.underline-link {
+    text-decoration: underline;
+}
