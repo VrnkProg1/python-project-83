@@ -1,11 +1,14 @@
-
+install:
+	pip install uv
+	uv sync
+	./build.sh
 
 dev:
 	uv run flask --debug --app page_analyzer:app run
 
 
 build:
-	./build.sh
+	
 
 lint:
 	uv run ruff check .
