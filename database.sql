@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS urls (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    created_at datetime
+    created_at TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS url_checks (
